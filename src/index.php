@@ -73,8 +73,8 @@
     <p class=" text-center text-2xl ">your number one source for all things art</p>
     <div class="flex flex-col ">
 
-      <button class="text-white rounded-lg py-3 px-16 mb-2"> <a href="login.php">Sign In</a> </button> 
-      <button  class="text-white rounded-lg py-3 px-16 "> <a href="register.php">Join Us</a> </button>
+      <button class="text-white rounded-lg py-3 px-16 mb-2"> <a href="login.php">Log in</a> </button> 
+      <button  class="text-white rounded-lg py-3 px-16 "> <a href="register.php">SIGN UP</a> </button>
     </div>
    </div>
   </div>
@@ -354,3 +354,26 @@
   <script src="app.js"></script>
 </body>
 </html>
+<?php
+$servername = "localhost"; // Replace with your server name or IP address
+$username = "root"; // Replace with your database username
+$password = ""; // Replace with your database password
+$dbname = "Gallery"; // Replace with your database name
+
+// Create connection
+	$conn = mysqli_connect($servername, $username, $password);
+          // Check connection	
+          if(!$conn){     
+                die("Connection failed: ". mysqli_connect_error());
+                    }
+              echo"Connected successfully";
+              // Create database
+              $sql ="CREATE DATABASE Gallery ";
+              if(mysqli_query($conn, $sql)) 
+              {echo"Database created successfully";
+              } 
+              else{
+              echo"Error creating database: ". mysqli_error($conn);
+            }mysqli_close($conn);
+?>
+
