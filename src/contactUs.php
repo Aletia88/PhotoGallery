@@ -12,7 +12,7 @@
     <div class="flex justify-between m-5 items-center gap-48">
 
    
-        <a href="./index.html" class="">Photo Gallery</a>
+        <a href="./index.php" class="">Photo Gallery</a>
         
         
         <nav >

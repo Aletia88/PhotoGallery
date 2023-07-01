@@ -14,7 +14,7 @@
   <div class="flex nav justify-between  z-20 m-5 items-center gap-48">
 
    
-    <a href="./index .html" class="">Photo Gallery</a>
+    <a href="./inde.php" class="">Photo Gallery</a>
     <div class="search-container">
       <input type="text"  id="search-bar" placeholder="Search..." class="border border-gray-200 rounded-md">
     </div>
@@ -26,7 +26,11 @@
         <li><a href="./login.php">Login/Signin</a></li>
         <li><a href="./contactUs.php">Contact Us</a></li>
         <li><a href="./Help.php">Help</a></li>
+<<<<<<< HEAD
         <li> <a href="./Admin/index.php"><img src="./images/profile.webp" width="35" alt=""></a> </li>
+=======
+        <li> <a href="profile.php"><img src="./images/profile.webp" width="35" alt=""></a> </li>
+>>>>>>> e6fa53831f577945d9d50807dffec40d5ba0c391
       </ul>
     </nav>
   </div>
@@ -69,8 +73,8 @@
     <p class=" text-center text-2xl ">your number one source for all things art</p>
     <div class="flex flex-col ">
 
-      <button class="text-white rounded-lg py-3 px-16 mb-2"> <a href="login.html">Sign In</a> </button> 
-      <button  class="text-white rounded-lg py-3 px-16 "> <a href="register.html">Join Us</a> </button>
+      <button class="text-white rounded-lg py-3 px-16 mb-2"> <a href="login.php">Sign In</a> </button> 
+      <button  class="text-white rounded-lg py-3 px-16 "> <a href="register.php">Join Us</a> </button>
     </div>
    </div>
   </div>
