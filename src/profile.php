@@ -15,11 +15,11 @@
   
     <nav >
       <ul class="flex gap-5">
-        <li><a href="./index.html" class="active">Home</a></li>
-        <li><a href="./About.html">About</a></li>
-        <li><a href="./login.html">Login/Signin</a></li>
-        <li><a href="./contactUs.html">Contact Us</a></li>
-        <li><a href="./Help.html">Help</a></li>
+        <li><a href="./index.php" class="active">Home</a></li>
+        <li><a href="./About.php">About</a></li>
+        <li><a href="./login.php">Login/Signin</a></li>
+        <li><a href="./contactUs.php">Contact Us</a></li>
+        <li><a href="./Help.php">Help</a></li>
       </ul>
     </nav>
   </div>

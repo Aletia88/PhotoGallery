@@ -48,7 +48,7 @@
         <a class="inline-block align-baseline font-bold text-sm text-yellow-600 hover:text-yellow-800" href="#">Forgot Password?</a>
       </div>
       <button class="bg-yellow-600 hover:bg-yellow-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mb-4" type="submit" > <a href="./index.html">Login</a> </button>
-      <p class="text-gray-700 text-sm">Don't have an account? <a class="font-bold text-yellow-600 hover:text-yellow-800" href="./register.html">Sign up</a>.</p>
+      <p class="text-gray-700 text-sm">Don't have an account? <a class="font-bold text-yellow-600 hover:text-yellow-800" href="./register.php">Sign up</a>.</p>
     </form>
   </div>
 

@@ -22,11 +22,11 @@
     <nav >
       <ul class="flex gap-5 justify-center items-center">
         <li><a href="#" class="active">Home</a></li>
-        <li><a href="./About.html">About</a></li>
-        <li><a href="./login.html">Login/Signin</a></li>
-        <li><a href="./contactUs.html">Contact Us</a></li>
-        <li><a href="./Help.html">Help</a></li>
-        <li> <a href="./Admin/index.html"><img src="./images/profile.webp" width="35" alt=""></a> </li>
+        <li><a href="./About.php">About</a></li>
+        <li><a href="./login.php">Login/Signin</a></li>
+        <li><a href="./contactUs.php">Contact Us</a></li>
+        <li><a href="./Help.php">Help</a></li>
+        <li> <a href="./Admin/index.php"><img src="./images/profile.webp" width="35" alt=""></a> </li>
       </ul>
     </nav>
   </div>
