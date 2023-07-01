@@ -27,6 +27,7 @@
     <img src="images/photo.jpg" alt="pro Image">
     <h1>John Doe</h1>
     <p>Photographer</p>
+    <button class="text-yellow-400 font-bold "> <a href="./editprofile.php">Edit Profile</a> </button>
   </div>
   
   <div class="h-[50vh] bg-white">

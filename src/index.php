@@ -26,11 +26,11 @@
         <li><a href="./login.php">Login/Signin</a></li>
         <li><a href="./contactUs.php">Contact Us</a></li>
         <li><a href="./Help.php">Help</a></li>
-<<<<<<< HEAD
-        <li> <a href="./Admin/index.php"><img src="./images/profile.webp" width="35" alt=""></a> </li>
-=======
+
+        <!-- <li> <a href="./Admin/index.php"><img src="./images/profile.webp" width="35" alt=""></a> </li> -->
+
         <li> <a href="profile.php"><img src="./images/profile.webp" width="35" alt=""></a> </li>
->>>>>>> e6fa53831f577945d9d50807dffec40d5ba0c391
+
       </ul>
     </nav>
   </div>
