@@ -1,3 +1,27 @@
+<?php
+// Database connection parameters
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "Gallery";
+
+// Create a new connection
+$conn = mysqli_connect($servername, $username, $password);
+
+// Check the connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Select the database
+mysqli_select_db($conn, $dbname);
+
+// Fetch image approval requests from the requests table
+$sqlFetchRequests = "SELECT * FROM requests";
+$resultFetchRequests = mysqli_query($conn, $sqlFetchRequests);
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,49 +101,131 @@
     .image-request .approve-button:hover {
       background-color: #DAA624;
     }
-  </style>
+
+  .fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+
+  .fullscreen-image {
+    max-width: 90%;
+    max-height: 90%;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+  }
+</style>
 </head>
 <body>
   <div class="container mx-auto p-8">
     <h1 class="text-4xl font-bold mb-8">Web Gallery Admin</h1>
     
     <div class=" mt-4 ">
-      <div class="section mb-4 " >
+      <div class="section mb-4">
         <h2 class="text-2xl font-bold mb-4">Image Management</h2>
         <p>Upload, delete, and update gallery images.</p>
-        <a href="imgaeManagement.html">Go to Image Management</a>
+        <a href="imageManagement.php">Go to Image Management</a>
       </div>
       
       <div class="section mb-4">
         <h2 class="text-2xl font-bold mb-4">User Management</h2>
         <p>Manage user accounts and permissions.</p>
-        <a href="userManagement.html">Go to User Management</a>
+        <a href="userManagement.php">Go to User Management</a>
       </div>
       
       <div class="section">
         <h2 class="text-2xl font-bold mb-4">Image Approval Requests</h2>
-        
+       
+        <?php
+        // Check if there are image approval requests
+        if (mysqli_num_rows($resultFetchRequests) > 0) {
+            // Loop through each request and display the details
+            while ($row = mysqli_fetch_assoc($resultFetchRequests)) {
+                $userName = $row['username'];
+                $uploadedPhotoName = $row['uploadedImages'];
+                $profilePhoto = $row['profilePhoto'];
+        ?>
         <div class="image-request">
-          <img src="../images/photo.jpg" alt="User Avatar">
+          <img src="<?php echo ("../uploads/upload_requests/".$profilePhoto); ?>" alt="User Avatar">
           <div class="details">
-            <p><strong>John Doe</strong> has requested to upload an image.</p>
+            <p><strong><?php echo $userName; ?></strong> has requested to upload an image.</p>
             <a href="#" class="approve-button">Approve</a>
+            <a href="<?php echo "../uploads/".$uploadedPhotoName; ?>" class="show-image-button">Show Image</a>
+    <div class="image-preview"></div>
           </div>
         </div>
-        
-        <div class="image-request">
-          <img src="../images/photo1.webp" alt="User Avatar">
-          <div class="details">
-            <p><strong>Jane Smith</strong> has requested to upload an image.</p>
-            <a href="#" class="approve-button">Approve</a>
-          </div>
-        </div>
-        
-        <!-- Add more image request entries here -->
+        <?php
+            }
+        } else {
+            echo "<p>No image approval requests found.</p>";
+        }
+        ?>
         
       </div>
       
     </div>
   </div>
 </body>
+
+<script>
+  // Get all the show image buttons
+  var showImageButtons = document.querySelectorAll('.show-image-button');
+
+  // Attach click event listener to each show image button
+  showImageButtons.forEach(function(button) {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Get the image URL from the button's href attribute
+      var imageUrl = this.getAttribute('href');
+
+      // Create a new image element
+      var imageElement = document.createElement('img');
+      imageElement.src = imageUrl;
+      imageElement.alt = 'Requested Image';
+
+      // Create the fullscreen overlay element
+      var overlayElement = document.createElement('div');
+      overlayElement.className = 'fullscreen-overlay';
+
+      // Create the close button element
+      var closeButton = document.createElement('span');
+      closeButton.innerHTML = '&times;';
+      closeButton.className = 'close-button';
+
+      // Append the image and close button to the overlay
+      overlayElement.appendChild(imageElement);
+      overlayElement.appendChild(closeButton);
+
+      // Append the overlay to the document body
+      document.body.appendChild(overlayElement);
+
+      // Add click event listener to the close button
+      closeButton.addEventListener('click', function() {
+        // Remove the overlay from the document body
+        document.body.removeChild(overlayElement);
+      });
+    });
+  });
+</script>
+  
 </html>
+
+<?php
+// Close the database connection
+mysqli_close($conn);
+?>
