@@ -77,9 +77,7 @@
             } else {
                 errorElement.textContent = ""; // Clear error message
             }
-        }
-
-        function validateForm() {
+      
         var password = document.getElementById("password").value;
         var confirmPassword = document.getElementById("confirmpassword").value;
         var errorElement = document.getElementById("passwordError");
@@ -91,6 +89,7 @@
         } else {
             errorElement.textContent = "";
         }
+
 
         // Check if the username is already taken
         var username = document.getElementById("username").value;

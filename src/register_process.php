@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
         mysqli_query($conn, $insertQuery);
 
         // Redirect to a success page or do other actions on successful registration
-        header("Location: registration_success.php");
+        header("Location: succesfull.php");
         exit();
     }
 }
