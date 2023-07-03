@@ -40,6 +40,9 @@
   </div>
 </div>
   <div class="gallery">
+    <?php
+   // require'retrieve_images.php';
+    ?>
     <nav class="gallery-nav mb-5">
     <ul>
             <li><a href="#" class="active" data-category="all">All</a></li>
@@ -137,7 +140,7 @@
         <div class="disc absolute le ft-10 bottom-5 w-64 ">
           <div class="bg-white rounded-sm  gap-4 p-2">
             <div class="flex gap-4">
-              <img src="./images/profile.png" alt="" data-category="food" class="rounded-full w-8 border-black ">
+              <img src="./images/photographer2.png" alt="" data-category="animal" class="rounded-full w-8 border-black ">
               <div class="text-sm ">
 
                 <p>photographer</p>
