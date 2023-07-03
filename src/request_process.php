@@ -25,32 +25,49 @@ if (mysqli_query($conn, $sql)) {
 }
 
 // Handle form submission
+// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['name'];
-    $uploadedImages = $_FILES['photo']['name'];
-    $sqlProfilePhoto = "SELECT profile_image FROM editProfile LIMIT 1";
-    $resultProfilePhoto = mysqli_query($conn, $sqlProfilePhoto);
 
-
-    $row = mysqli_fetch_assoc($resultProfilePhoto);
-    $profilePhoto = $row['profile_image'];
-    // Move the uploaded file to a desired location (e.g., a folder named "uploads")
-    $targetDir = "uploads/upload_requests/";
-    $targetFile = $targetDir . basename($_FILES['photo']['name']);
-    if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetFile)) {
-        echo "File uploaded successfully!<br>";
+    // Check if the username exists in the editProfile table
+    $checkUsernameSql = "SELECT name FROM editProfile WHERE name = '$username'";
+    $resultUsername = mysqli_query($conn, $checkUsernameSql);
+    
+    if (mysqli_num_rows($resultUsername) > 0) {
+        // Username exists, continue processing the form data
+        $uploadedImages = $_FILES['photo']['name'];
+        $sqlProfilePhoto = "SELECT profile_image FROM editProfile LIMIT 1";
+        $resultProfilePhoto = mysqli_query($conn, $sqlProfilePhoto);
+        
+        $row = mysqli_fetch_assoc($resultProfilePhoto);
+        $profilePhoto = $row['profile_image'];
+        
+        // Move the uploaded file to a desired location (e.g., a folder named "uploads")
+        $targetDir = "uploads/upload_requests/";
+        $targetFile = $targetDir . basename($_FILES['photo']['name']);
+        
+        if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetFile)) {
+            echo "File uploaded successfully!<br>";
+            
+            // Insert the form data into the "requests" table
+            $insertSql = "INSERT INTO Gallery.requests (username, uploadedImages, profilePhoto) VALUES ('$username', '$uploadedImages', '$profilePhoto')";
+            
+            if (mysqli_query($conn, $insertSql)) {
+                echo "Request submitted successfully!";
+            } else {
+                echo "Error submitting request: " . mysqli_error($conn);
+            }
+        } else {
+            echo "Error uploading file!<br>";
+        }
     } else {
-        echo "Error uploading file!<br>";
-    }
-
-    // Insert the form data into the "requests" table
-    $insertSql = "INSERT INTO Gallery.requests (username, uploadedImages, profilePhoto) VALUES ('$username', '$uploadedImages', '$profilePhoto')";
-    if (mysqli_query($conn, $insertSql)) {
-        echo "Request submitted successfully!";
-    } else {
-        echo "Error submitting request: " . mysqli_error($conn);
+        echo "Invalid username. Please enter a valid username.";
     }
 }
 
+
+
+
 mysqli_close($conn);
 ?>
+
