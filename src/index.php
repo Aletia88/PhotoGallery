@@ -41,7 +41,7 @@
 </div>
   <div class="gallery">
     <?php
-   // require'retrieve_images.php';
+    //  include'retrieve_images.php';
     ?>
     <nav class="gallery-nav mb-5">
     <ul>
