@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -18,8 +16,6 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Database connection error: " . mysqli_connect_error());
 }
-
-
 
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
@@ -38,13 +34,10 @@ if (isset($_POST['submit'])) {
             $storedPassword = $row['password'];
 
             // Compare the stored password with the user input
-            if (password_verify($password, $storedPassword)) {
+            if ($password == $storedPassword) {
                 // Authentication successful
                 // Redirect to index.php
-               
-                
-                header("Location: home.php");
-                $_SESSION['username'] = $username;
+                header("Location: index.php");
                 exit();
             } else {
                 // Authentication failed

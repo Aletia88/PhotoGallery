@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Database connection
 $servername = "localhost";  // Change this if your database server is different
 $username = "root";  // Change this to your MySQL username
@@ -36,6 +37,7 @@ if (isset($_POST['submit'])) {
     $phone = $_POST['phone_number'];
     $password = $_POST['password'];
 
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     // Check if the username already exists
     $checkUsernameQuery = "SELECT * FROM users WHERE username = '$username'";
     $result = mysqli_query($conn, $checkUsernameQuery);
@@ -44,9 +46,10 @@ if (isset($_POST['submit'])) {
         $usernameError = "Username already exists. Please choose a different username.";
     } else {
         // Insert the user data into the table (assuming you have a users table)
-        $insertQuery = "INSERT INTO users (firstname, lastname, username, email, phone_number, password) VALUES ('$firstname', '$lastname', '$username', '$email', '$phone', '$password')";
+        $insertQuery = "INSERT INTO users (firstname, lastname, username, email, phone_number, password) VALUES ('$firstname', '$lastname', '$username', '$email', '$phone', '$hashedPassword')";
         mysqli_query($conn, $insertQuery);
-
+         $_SESSION["loggedin"] = true;
+        $_SESSION["username"] = $username;
         // Redirect to a success page or do other actions on successful registration
         header("Location: succesfull.php");
         exit();

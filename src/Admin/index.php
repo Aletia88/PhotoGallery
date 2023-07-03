@@ -166,13 +166,29 @@ $resultFetchRequests = mysqli_query($conn, $sqlFetchRequests);
             $profilePhoto = $row['profilePhoto'];
             ?>
             <div class="image-request">
-                <img src="<?php echo ("../uploads/upload_requests/" . $profilePhoto); ?>" alt="User Avatar">
-                <div class="details">
-                    <p><strong><?php echo $userName; ?></strong> has requested to upload an image.</p>
-                    <button class="approve-button" onclick="approveRequest('<?php echo $userName; ?>', '<?php echo $profilePhoto; ?>', '<?php echo $uploadedPhotoName; ?>')">Approve</button>
-                    <a href="<?php echo "../uploads/" . $uploadedPhotoName; ?>" class="show-image-button">Show Image</a>
-                </div>
+    <img src="<?php echo ("../uploads/upload_requests/" . $profilePhoto); ?>" alt="User Avatar">
+    <div class="details">
+        <p><strong><?php echo $userName; ?></strong> has requested to upload an image.</p>
+        <form method="post" action="approve_request.php">
+            <input type="hidden" name="userName" value="<?php echo $userName; ?>">
+            <input type="hidden" name="profilePhoto" value="<?php echo $profilePhoto; ?>">
+            <input type="hidden" name="uploadedPhotoName" value="<?php echo $uploadedPhotoName; ?>">
+            <div class="flex items-center mt-2">
+                <label for="category" class="text-sm font-bold mr-2">Category:</label>
+                <select id="category" name="category" class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <option value="Nature">Nature</option>
+                    <option value="Animal">Animal</option>
+                    <option value="City">City</option>
+                    <option value="Food">Food</option>
+                    <option value="Culture">Culture</option>
+                </select>
             </div>
+            <button type="submit" class="approve-button" onclick="approveRequest('<?php echo $userName; ?>', '<?php echo $profilePhoto; ?>', '<?php echo $uploadedPhotoName; ?>')">Approve</button>
+        </form>
+        <a href="<?php echo "../uploads/" . $uploadedPhotoName; ?>" class="show-image-button">Show Image</a>
+    </div>
+</div>
+
             <?php
           }
         } else {
