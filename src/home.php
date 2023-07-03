@@ -95,6 +95,7 @@
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
             $username = $row['username'];
+            $category = $row['category'];
 
             $sql2 = "SELECT  phone, facebook, linkedin, instagram, twitter FROM editprofile WHERE name = '$username'";
             $result2 = mysqli_query($conn, $sql2);
@@ -107,7 +108,7 @@
                     ?>
 
                     <div class="relative index ">
-                        <img src="<?php echo ("./uploads/" . $imageSrc); ?>" alt="jhklfjkl">
+                        <img src="<?php echo ("./uploads/" . $imageSrc); ?>" alt="" data_catagory="<?php echo $category ?>">
                         <div class="disc absolute  left-10 bottom-5 w-64 ">
 
                             <?php
@@ -178,7 +179,27 @@
     }
     ?> -->
 
+    
     <script src="app.js"></script>
+  <script src="classify.js"></script>
+
+  <script>
+    // Function to handle the click on category links
+    function handleCategoryClick(event) {
+          event.preventDefault();
+          const selectedCategory = event.target.dataset.category;
+          classifyImages(selectedCategory);
+        }
+      
+        // Add event listeners to category links
+        const categoryLinks = document.querySelectorAll('.gallery-nav a');
+        categoryLinks.forEach(link => {
+          link.addEventListener('click', handleCategoryClick);
+        });
+      
+        // Initial classification with 'all' category
+        classifyImages('all');
+  </script>
 </body>
 
 </html>
