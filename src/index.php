@@ -27,7 +27,7 @@
         <li><a href="./contactUs.php">Contact Us</a></li>
         <li><a href="./Help.php">Help</a></li>
 <<<<<<< HEAD
-        <li> <a href="./Admin/index.php"><img src="./images/profile.webp" width="35" alt=""></a> </li>
+        <li> <a href="./Admin/index image-gallery.php"><img src="./images/profile.webp" width="35" alt=""></a> </li>
 =======
         <li> <a href="profile.php"><img src="./images/profile.webp" width="35" alt=""></a> </li>
 >>>>>>> e6fa53831f577945d9d50807dffec40d5ba0c391
@@ -41,14 +41,14 @@
 </div>
   <div class="gallery">
     <nav class="gallery-nav mb-5">
-        <ul>
-          <li><a href="#" class="active">All</a></li>
-          <li><a href="#">Nature</a></li>
-          <li><a href="#">Animals</a></li>
-          <li><a href="#">City</a></li>
-          <li><a href="#">Food</a></li>
-          <li><a href="#">Calture</a></li>
-        </ul>
+    <ul>
+            <li><a href="#" class="active" data-category="all">All</a></li>
+            <li><a href="#" data-category="nature">Nature</a></li>
+            <li><a href="#" data-category="animals">Animals</a></li>
+            <li><a href="#" data-category="city">City</a></li>
+            <li><a href="#" data-category="food">Food</a></li>
+            <li><a href="#" data-category="culture">Culture</a></li>
+          </ul>
       </nav>
       <br>
     </div>
@@ -87,11 +87,76 @@
  
 
 
-<div class="body    m-20 gap-10">
-      <div class="relative h-96 index item1">
+<div class="body    m-20 gap-10   ">
+      <div class="relative h-96 index image-gallery item1 ">
 
         <!-- <img  src="./images/coffe.jpg"  alt=""> -->
-        <div class="disc absolute  left-10 bottom-5 w-64 ">
+        <div class="disc absolute left-10 bottom-5 w-64 ">
+          <div class="bg-white rounded-sm  gap-4 p-2">
+            <div class="flex gap-4">
+              <img src="./images/" alt="" data-category="Nature" class="rounded-full w-8 border-black ">
+              <div class="text-sm ">
+
+                <p>photographer</p>
+                <!-- <p>date</p> -->
+              </div>
+            </div>
+            <ul class="flex gap-2 justify-center">
+              <li><a href=""><img src="./images/facebook.png" alt="" class=" rounded-full w-5"></a></li>
+              <li><a href=""><img src="./images/linked.png" alt="" class="rounded-full w-5"></a></li>
+              <li><a href=""><img src="./images/insta.jpg" alt="" class="rounded-full w-5"></a></li>
+              <li><a href=""><img src="./images/twitter.png" alt="" class="rounded-full w-5"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="relative index image-gallery item2">
+
+        <img src="./images/coffe.jpg" data-category="animal"  alt="">
+        <div class="disc absolute left-10 bottom-5 w-64 ">
+          <div class="bg-white rounded-sm  gap-4 p-2">
+            <div class="flex gap-4">
+              <img src="./images/profile.png" data-category="animal" alt="" class="rounded-full w-8 border-black ">
+              <div class="text-sm ">
+
+                <p>photographer</p>
+                <!-- <p>date</p> -->
+              </div>
+            </div>
+            <ul class="flex gap-2 justify-center">
+              <li><a href=""><img src="./images/facebook.png" alt="" class=" rounded-full w-5"></a></li>
+              <li><a href=""><img src="./images/linked.png" alt="" class="rounded-full w-5"></a></li>
+              <li><a href=""><img src="./images/insta.jpg" alt="" class="rounded-full w-5"></a></li>
+              <li><a href=""><img src="./images/twitter.png" alt="" class="rounded-full w-5"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="relative index image-gallery ">
+        <img src="./images/photo-1629295895548-b2f7a39eb6dd.avif" data-category="culture" alt="">
+        <div class="disc absolute le ft-10 bottom-5 w-64 ">
+          <div class="bg-white rounded-sm  gap-4 p-2">
+            <div class="flex gap-4">
+              <img src="./images/profile.png" alt="" data-category="food" class="rounded-full w-8 border-black ">
+              <div class="text-sm ">
+
+                <p>photographer</p>
+                <!-- <p>date</p> -->
+              </div>
+            </div>
+            <ul class="flex gap-2 justify-center">
+              <li><a href=""><img src="./images/facebook.png" alt="" class=" rounded-full w-5"></a></li>
+              <li><a href=""><img src="./images/linked.png" alt="" class="rounded-full w-5"></a></li>
+              <li><a href=""><img src="./images/insta.jpg" alt="" class="rounded-full w-5"></a></li>
+              <li><a href=""><img src="./images/twitter.png" alt="" class="rounded-full w-5"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="relative index image-gallery ">
+
+        <img src="./images/photo.jpg" data-category="Nature" alt="">
+        <div class="disc absolute left-10 bottom-5 w-64 ">
           <div class="bg-white rounded-sm  gap-4 p-2">
             <div class="flex gap-4">
               <img src="./images/profile.png" alt="" class="rounded-full w-8 border-black ">
@@ -110,10 +175,10 @@
           </div>
         </div>
       </div>
-      <div class="relative index item2">
+      <div class="relative index image-gallery ">
 
-        <img src="./images/coffe.jpg"  alt="">
-        <div class="disc absolute  left-10 bottom-5 w-64 ">
+        <img src="./images/coffe.jpg"   data-category="animal" alt="">
+        <div class="disc absolute left-10 bottom-5 w-64 ">
           <div class="bg-white rounded-sm  gap-4 p-2">
             <div class="flex gap-4">
               <img src="./images/profile.png" alt="" class="rounded-full w-8 border-black ">
@@ -132,9 +197,9 @@
           </div>
         </div>
       </div>
-      <div class="relative index ">
-        <img src="./images/photo-1629295895548-b2f7a39eb6dd.avif" alt="">
-        <div class="disc absolute  le ft-10 bottom-5 w-64 ">
+      <div class="relative index image-gallery ">
+        <img src="./images/po.jpg" data-category="city" alt="">
+        <div class="disc absolute le ft-10 bottom-5 w-64 ">
           <div class="bg-white rounded-sm  gap-4 p-2">
             <div class="flex gap-4">
               <img src="./images/profile.png" alt="" class="rounded-full w-8 border-black ">
@@ -153,10 +218,10 @@
           </div>
         </div>
       </div>
-      <div class="relative index ">
+      <div class="relative index image-gallery ">
 
-        <img src="./images/photo.jpg"  alt="">
-        <div class="disc absolute  left-10 bottom-5 w-64 ">
+        <img src="./images/flag.jpg" data-category="culture" alt="">
+        <div class="disc absolute left-10 bottom-5 w-64 ">
           <div class="bg-white rounded-sm  gap-4 p-2">
             <div class="flex gap-4">
               <img src="./images/profile.png" alt="" class="rounded-full w-8 border-black ">
@@ -175,10 +240,10 @@
           </div>
         </div>
       </div>
-      <div class="relative index ">
+      <div class="relative index image-gallery ">
 
-        <img src="./images/coffe.jpg"  alt="">
-        <div class="disc absolute  left-10 bottom-5 w-64 ">
+        <img src="./images/coffe4.jpg " data-category="culture" alt="">
+        <div class="disc absolute left-10 bottom-5 w-64 ">
           <div class="bg-white rounded-sm  gap-4 p-2">
             <div class="flex gap-4">
               <img src="./images/profile.png" alt="" class="rounded-full w-8 border-black ">
@@ -197,9 +262,10 @@
           </div>
         </div>
       </div>
-      <div class="relative index ">
-        <img src="./images/po.jpg" alt="">
-        <div class="disc absolute  le ft-10 bottom-5 w-64 ">
+      <div class="relative index image-gallery  image-gallery">
+
+        <img src="./images/coffe3.jpg " data-category="nature" alt="">
+        <div class="disc absolute left-10 bottom-5 w-64 ">
           <div class="bg-white rounded-sm  gap-4 p-2">
             <div class="flex gap-4">
               <img src="./images/profile.png" alt="" class="rounded-full w-8 border-black ">
@@ -218,75 +284,9 @@
           </div>
         </div>
       </div>
-      <div class="relative index ">
-
-        <img src="./images/flag.jpg"  alt="">
-        <div class="disc absolute  left-10 bottom-5 w-64 ">
-          <div class="bg-white rounded-sm  gap-4 p-2">
-            <div class="flex gap-4">
-              <img src="./images/profile.png" alt="" class="rounded-full w-8 border-black ">
-              <div class="text-sm ">
-
-                <p>photographer</p>
-                <!-- <p>date</p> -->
-              </div>
-            </div>
-            <ul class="flex gap-2 justify-center">
-              <li><a href=""><img src="./images/facebook.png" alt="" class=" rounded-full w-5"></a></li>
-              <li><a href=""><img src="./images/linked.png" alt="" class="rounded-full w-5"></a></li>
-              <li><a href=""><img src="./images/insta.jpg" alt="" class="rounded-full w-5"></a></li>
-              <li><a href=""><img src="./images/twitter.png" alt="" class="rounded-full w-5"></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="relative index ">
-
-        <img src="./images/coffe4.jpg " alt="">
-        <div class="disc absolute  left-10 bottom-5 w-64 ">
-          <div class="bg-white rounded-sm  gap-4 p-2">
-            <div class="flex gap-4">
-              <img src="./images/profile.png" alt="" class="rounded-full w-8 border-black ">
-              <div class="text-sm ">
-
-                <p>photographer</p>
-                <!-- <p>date</p> -->
-              </div>
-            </div>
-            <ul class="flex gap-2 justify-center">
-              <li><a href=""><img src="./images/facebook.png" alt="" class=" rounded-full w-5"></a></li>
-              <li><a href=""><img src="./images/linked.png" alt="" class="rounded-full w-5"></a></li>
-              <li><a href=""><img src="./images/insta.jpg" alt="" class="rounded-full w-5"></a></li>
-              <li><a href=""><img src="./images/twitter.png" alt="" class="rounded-full w-5"></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="relative index ">
-
-        <img src="./images/coffe3.jpg " alt="">
-        <div class="disc absolute  left-10 bottom-5 w-64 ">
-          <div class="bg-white rounded-sm  gap-4 p-2">
-            <div class="flex gap-4">
-              <img src="./images/profile.png" alt="" class="rounded-full w-8 border-black ">
-              <div class="text-sm ">
-
-                <p>photographer</p>
-                <!-- <p>date</p> -->
-              </div>
-            </div>
-            <ul class="flex gap-2 justify-center">
-              <li><a href=""><img src="./images/facebook.png" alt="" class=" rounded-full w-5"></a></li>
-              <li><a href=""><img src="./images/linked.png" alt="" class="rounded-full w-5"></a></li>
-              <li><a href=""><img src="./images/insta.jpg" alt="" class="rounded-full w-5"></a></li>
-              <li><a href=""><img src="./images/twitter.png" alt="" class="rounded-full w-5"></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="relative index ">
-        <img src="./images/coffe2.jpg" alt="">
-        <div class="disc absolute  le ft-10 bottom-5 w-64 ">
+      <div class="relative index image-gallery ">
+        <img src="./images/coffe2.jpg" data-category=" nature"  alt="">
+        <div class="disc absolute le ft-10 bottom-5 w-64 ">
           <div class="bg-white rounded-sm  gap-4 p-2">
             <div class="flex gap-4">
               <img src="./images/profile.png" alt="" class="rounded-full w-8 border-black ">
@@ -352,28 +352,26 @@
     ?> -->
 
   <script src="app.js"></script>
+  <script src="classify.js"></script>
+
+  <script>
+    // Function to handle the click on category links
+    function handleCategoryClick(event) {
+          event.preventDefault();
+          const selectedCategory = event.target.dataset.category;
+          classifyImages(selectedCategory);
+        }
+      
+        // Add event listeners to category links
+        const categoryLinks = document.querySelectorAll('.gallery-nav a');
+        categoryLinks.forEach(link => {
+          link.addEventListener('click', handleCategoryClick);
+        });
+      
+        // Initial classification with 'all' category
+        classifyImages('all');
+  </script>
 </body>
 </html>
-<?php
-$servername = "localhost"; // Replace with your server name or IP address
-$username = "root"; // Replace with your database username
-$password = ""; // Replace with your database password
-$dbname = "Gallery"; // Replace with your database name
 
-// Create connection
-	$conn = mysqli_connect($servername, $username, $password);
-          // Check connection	
-          if(!$conn){     
-                die("Connection failed: ". mysqli_connect_error());
-                    }
-              echo"Connected successfully";
-              // Create database
-              $sql ="CREATE DATABASE Gallery ";
-              if(mysqli_query($conn, $sql)) 
-              {echo"Database created successfully";
-              } 
-              else{
-              echo"Error creating database: ". mysqli_error($conn);
-            }mysqli_close($conn);
-?>
 

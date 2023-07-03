@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="gallery">
+        <nav class="gallery-nav mb-5">
+          <ul>
+            <li><a href="#" class="active" data-category="all">All</a></li>
+            <li><a href="#" data-category="nature">Nature</a></li>
+            <li><a href="#" data-category="animals">Animals</a></li>
+            <li><a href="#" data-category="city">City</a></li>
+            <li><a href="#" data-category="food">Food</a></li>
+            <li><a href="#" data-category="culture">Culture</a></li>
+          </ul>
+        </nav>
+        <br>
+        <div class="image-gallery">
+          <img src="./images/coffe.jpg" data-category="nature" alt="">
+          <img src="./images/coffe4.jpg" data-category="animals" alt="">
+          <img src="./images/coffe2.jpg" data-category="city" alt="">
+          <!-- more image tags with data-category attribute -->
+        </div>
+      </div>
+      <script src="classify.js"></script>
+      <script>
+        // Function to handle the click on category links
+        function handleCategoryClick(event) {
+          event.preventDefault();
+          const selectedCategory = event.target.dataset.category;
+          classifyImages(selectedCategory);
+        }
+      
+        // Add event listeners to category links
+        const categoryLinks = document.querySelectorAll('.gallery-nav a');
+        categoryLinks.forEach(link => {
+          link.addEventListener('click', handleCategoryClick);
+        });
+      
+        // Initial classification with 'all' category
+        classifyImages('all');
+      </script>
+      
+</body>
+</html>
