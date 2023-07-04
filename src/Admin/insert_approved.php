@@ -9,6 +9,13 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+// $sql = "DROP TABLE IF EXISTS approved";
+
+// if (mysqli_query($conn, $sql)) {
+//     echo "Table 'approved' deleted successfully!<br>";
+// } else {
+//     echo "Error deleting table: " . mysqli_error($conn) . "<br>";
+// }
 
 $sqlCreateTable = "CREATE TABLE IF NOT EXISTS approved (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
@@ -25,7 +32,7 @@ if (mysqli_query($conn, $sqlCreateTable)) {
 }
 
 // Get the values from the AJAX request
-$sql = 'SELECT * FROM requests';
+$sql = 'SELECT * FROM requests where ';
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 

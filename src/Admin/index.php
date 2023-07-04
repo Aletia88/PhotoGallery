@@ -150,39 +150,29 @@ $resultFetchRequests = mysqli_query($conn, $sqlFetchRequests);
       </div>
 
       <div class="section">
-        <h2 class="text-2xl font-bold mb-4">Image Approval Requests</h2>
+    <h2 class="text-2xl font-bold mb-4">Image Approval Requests</h2>
 
-        <div id="approved-message" class="approved-message" style="display: none;">
-          Approved! The request has been successfully approved.
-        </div>
+    <div id="approved-message" class="approved-message" style="display: none;">
+        Approved! The request has been successfully approved.
+    </div>
 
-        <?php
-        // Check if there are image approval requests
-        if (mysqli_num_rows($resultFetchRequests) > 0) {
-          // Loop through each request and display the details
-          while ($row = mysqli_fetch_assoc($resultFetchRequests)) {
+    <?php
+    // Check if there are image approval requests
+    if (mysqli_num_rows($resultFetchRequests) > 0) {
+        // Loop through each request and display the details
+        while ($row = mysqli_fetch_assoc($resultFetchRequests)) {
             $userName = $row['username'];
             $uploadedPhotoName = $row['uploadedImages'];
             $profilePhoto = $row['profilePhoto'];
             ?>
-           <div class="image-request">
-    <img src="<?php echo ("../uploads/upload_requests/" . $profilePhoto); ?>" alt="User Avatar">
-    <div class="details">
-        <p><strong><?php echo $userName; ?></strong> has requested to upload an image.</p>
-        <form method="post" action="insert_approved.php">
-            <select name="category">
-                <option value="Nature">Nature</option>
-                <option value="Animal">Animal</option>
-                <option value="City">City</option>
-                <option value="Food">Food</option>
-                <option value="Culture">Culture</option>
-            </select>
-            <button type="submit" name="approve" class="approve-button" onclick="approveRequest('<?php echo $userName; ?>', '<?php echo $profilePhoto; ?>', '<?php echo $uploadedPhotoName; ?>')">Approve</button>
-        </form>
-        <a href="<?php echo "../uploads/" . $uploadedPhotoName; ?>" class="show-image-button">Show Image</a>
-    </div>
-</div>
-
+            <div class="image-request">
+                <img src="<?php echo ("../uploads/upload_requests/" . $profilePhoto); ?>" alt="User Avatar">
+                <div class="details">
+                    <p><strong><?php echo $userName; ?></strong> has requested to upload an image.</p>
+                    <button class="approve-button" onclick="approveRequest('<?php echo $userName; ?>', '<?php echo $profilePhoto; ?>', '<?php echo $uploadedPhotoName; ?>')">Approve</button>
+                    <a href="<?php echo "../uploads/" . $uploadedPhotoName; ?>" class="show-image-button">Show Image</a>
+                </div>
+            </div>
             <?php
           }
         } else {
@@ -238,54 +228,54 @@ $resultFetchRequests = mysqli_query($conn, $sqlFetchRequests);
   });
 
 
-  function approveRequest(userName, profilePhoto, uploadedPhoto) {
-    // Add event listeners to the "Approve" buttons
-    var approveButtons = document.getElementsByClassName("approve-button");
+function approveRequest(userName, profilePhoto, uploadedPhoto) {
+   // Add event listeners to the "Approve" buttons
+   var approveButtons = document.getElementsByClassName("approve-button");
     for (var i = 0; i < approveButtons.length; i++) {
-      approveButtons[i].addEventListener("click", function (e) {
-        e.preventDefault();
-        var imageRequest = this.parentNode.parentNode;
-        var userName = imageRequest.querySelector("strong").textContent;
-        var profilePhoto = imageRequest.querySelector("img").getAttribute("src");
-        var uploadedPhoto = imageRequest.querySelector(".show-image-button").getAttribute("href");
+        approveButtons[i].addEventListener("click", function(e) {
+            e.preventDefault();
+            var imageRequest = this.parentNode.parentNode;
+            var userName = imageRequest.querySelector("strong").textContent;
+            var profilePhoto = imageRequest.querySelector("img").getAttribute("src");
+            var uploadedPhoto = imageRequest.querySelector(".show-image-button").getAttribute("href");
 
-        // Make an AJAX request to insert the approved request into the "approved" table
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "insert_approved.php", true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseText);
-          }
-        };
-        xhr.send("userName=" + userName + "&profilePhoto=" + profilePhoto + "&uploadedPhoto=" + uploadedPhoto);
-      });
+            // Make an AJAX request to insert the approved request into the "approved" table
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "insert_approved.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send("userName=" + userName + "&profilePhoto=" + profilePhoto + "&uploadedPhoto=" + uploadedPhoto);
+        });
     }
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200) {
-        // Request successful, response received
-        document.getElementById('approved-message').style.display = 'block';
-        setTimeout(function () {
-          document.getElementById('approved-message').style.display = 'none';
-        }, 10000);
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                // Request successful, response received
+                document.getElementById('approved-message').style.display = 'block';
+                setTimeout(function() {
+                    document.getElementById('approved-message').style.display = 'none';
+                }, 10000);
 
-        var requestElement = document.getElementsByClassName('image-request')[0];
-        requestElement.parentNode.removeChild(requestElement);
-      }
-    }
-    // Display the 'approved' message for 10 seconds
-    document.getElementById('approved-message').style.display = 'block';
-    setTimeout(function () {
-      document.getElementById('approved-message').style.display = 'none';
-    }, 10000);
+                var requestElement = document.getElementsByClassName('image-request')[0];
+                requestElement.parentNode.removeChild(requestElement);
+            }
+          }
+           // Display the 'approved' message for 10 seconds
+           document.getElementById('approved-message').style.display = 'block';
+            setTimeout(function() {
+                document.getElementById('approved-message').style.display = 'none';
+            }, 10000);
 
-    // Remove the approval request from the page
-    var requestElement = document.getElementsByClassName('image-request')[0];
-    requestElement.parentNode.removeChild(requestElement);
-
-  }
-
+            // Remove the approval request from the page
+            var requestElement = document.getElementsByClassName('image-request')[0];
+            requestElement.parentNode.removeChild(requestElement);
+            
+        }
+        
 </script>
 
 </html>
