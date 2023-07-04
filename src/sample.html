@@ -1,48 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Photo Gallery</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Custom CSS styles */
+    /* ... CSS styles from the previous response ... */
+  </style>
 </head>
 <body>
-    <div class="gallery">
-        <nav class="gallery-nav mb-5">
-          <ul>
-            <li><a href="#" class="active" data-category="all">All</a></li>
-            <li><a href="#" data-category="nature">Nature</a></li>
-            <li><a href="#" data-category="animals">Animals</a></li>
-            <li><a href="#" data-category="city">City</a></li>
-            <li><a href="#" data-category="food">Food</a></li>
-            <li><a href="#" data-category="culture">Culture</a></li>
-          </ul>
-        </nav>
-        <br>
-        <div class="image-gallery">
-          <img src="./images/coffe.jpg" data-category="nature" alt="">
-          <img src="./images/coffe4.jpg" data-category="animals" alt="">
-          <img src="./images/coffe2.jpg" data-category="city" alt="">
-          <!-- more image tags with data-category attribute -->
-        </div>
-      </div>
-      <script src="classify.js"></script>
-      <script>
-        // Function to handle the click on category links
-        function handleCategoryClick(event) {
-          event.preventDefault();
-          const selectedCategory = event.target.dataset.category;
-          classifyImages(selectedCategory);
-        }
-      
-        // Add event listeners to category links
-        const categoryLinks = document.querySelectorAll('.gallery-nav a');
-        categoryLinks.forEach(link => {
-          link.addEventListener('click', handleCategoryClick);
-        });
-      
-        // Initial classification with 'all' category
-        classifyImages('all');
-      </script>
-      
+  <div class="nav">
+    <!-- Navigation code -->
+  </div>
+
+  <div class="gallery">
+    <div class="gallery-nav">
+      <ul>
+        <li><a href="#" class="active" data-category="all">All</a></li>
+        <li><a href="#" data-category="nature">Nature</a></li>
+        <li><a href="#" data-category="animals">Animals</a></li>
+        <li><a href="#" data-category="city">City</a></li>
+        <li><a href="#" data-category="culture">Culture</a></li>
+      </ul>
+    </div>
+
+    <div id="image-gallery-container"></div>
+
+    <div class="join">
+      <!-- Join section code -->
+    </div>
+  </div>
+
+  <div class="footer">
+    <!-- Footer code -->
+  </div>
+
+  <script>
+    // JavaScript code to retrieve images from the database and categorize them
+
+    // Example image data from the approved database
+    const images = [
+      { src: './coffe.jpg', category: 'nature', user: 'John Doe' },
+      { src: 'image2.jpg', category: 'animals', user: 'Jane Smith' },
+      { src: 'image3.jpg', category: 'city', user: 'Mike Johnson' },
+      { src: 'image4.jpg', category: 'culture', user: 'Emily Brown' },
+      // ... Add more images with their respective categories ...
+    ];
+
+    const imageGalleryContainer = document.getElementById('image-gallery-container');
+    const galleryNavLinks = document.querySelectorAll('.gallery-nav a');
+
+    // Function to filter images based on category
+    function filterImages(category) {
+      const filteredImages = category === 'all' ? images : images.filter(img => img.category === category);
+      imageGalleryContainer.innerHTML = '';
+
+      filteredImages.forEach(img => {
+        const imageGallery = document.createElement('div');
+        imageGallery.className = 'image-gallery';
+
+        const image = document.createElement('img');
+        image.src = img.src;
+        image.alt = 'Image';
+
+        const disc = document.createElement('div');
+        disc.className = 'disc';
+
+        const userImage = document.createElement('img');
+        userImage.src = 'avatar.jpg';
+        userImage.alt = 'Avatar';
+
+        const userText = document.createElement('p');
+        userText.textContent = img.user;
+
+        const actionsList = document.createElement('ul');
+        actionsList.className = 'actions';
+
+        const likeAction = document.createElement('li');
+        const likeLink = document.createElement('a');
+        likeLink.href = '#';
+        likeLink.textContent = 'Like';
+        likeAction.appendChild(likeLink);
+
+        const commentAction = document.createElement('li');
+        const commentLink = document.createElement('a');
+        commentLink.href = '#';
+        commentLink.textContent = 'Comment';
+        commentAction.appendChild(commentLink);
+
+        const shareAction = document.createElement('li');
+        const shareLink = document.createElement('a');
+        shareLink.href = '#';
+        shareLink.textContent = 'Share';
+        shareAction.appendChild(shareLink);
+
+        actionsList.appendChild(likeAction);
+        actionsList.appendChild(commentAction);
+        actionsList.appendChild(shareAction);
+
+        disc.appendChild(userImage);
+        disc.appendChild(userText);
+        disc.appendChild(actionsList);
+
+        imageGallery.appendChild(image);
+        imageGallery.appendChild(disc);
+
+        imageGalleryContainer.appendChild(imageGallery);
+      });
+    }
+
+    // Event listeners for gallery navigation links
+    galleryNavLinks.forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        const category = this.getAttribute('data-category');
+        filterImages(category);
+
+        // Update active class for navigation links
+        galleryNavLinks.forEach(link => link.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Initial load - display all images
+    filterImages('all');
+  </script>
 </body>
 </html>
