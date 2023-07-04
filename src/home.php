@@ -27,11 +27,23 @@
                     <li><a href="./About.php">About</a></li>
                     <li><a href="./contactUs.php">Contact Us</a></li>
                     <li><a href="./Help.php">Help</a></li>
-                    <li><a href="./index.php">Logout</a></li>
+                    <!-- <li><a href="./index.php">Logout</a></li> -->
 
                     <!-- <li> <a href="./Admin/index.php"><img src="./images/profile.webp" width="35" alt=""></a> </li> -->
+                    <?php
+        session_start();
+        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+            // User is logged in
+            echo '<li><a href="./logout.php">Logout</a></li>';
+            echo '<li><a href="./profile.php"><img src="./images/profile.webp" width="35" alt=""></a></li>';
+        } else {
+            // User is logged out
+            echo '<li><a href="./login.php">Login</a></li>';
+            echo '<li><a href="./register.php">Register</a></li>';
+        }
+        ?>
 
-                    <li> <a href="profile.php"><img src="./images/profile.webp" width="35" alt=""></a> </li>
+                    <!-- <li> <a href="profile.php"><img src="./images/profile.webp" width="35" alt=""></a> </li> -->
 
                 </ul>
             </nav>

@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+// session_start();
 
 $servername = "localhost";
 $username = "root";
@@ -41,10 +41,13 @@ if (isset($_POST['submit'])) {
             if (password_verify($password, $storedPassword)) {
                 // Authentication successful
                 // Redirect to index.php
-               
-                
+                session_start();
+    $_SESSION["loggedin"] = true;
+    $_SESSION["username"] = $username;
+
+                setcookie('user', $username, time() + (86400 * 30), '/');
                 header("Location: home.php");
-                $_SESSION['username'] = $username;
+                // $_SESSION['username'] = $username;
                 exit();
             } else {
                 // Authentication failed

@@ -28,8 +28,13 @@ if (isset($_POST['submit'])) {
             // Compare the stored password with the user input
             if (password_verify($password, $storedPassword)) {
               
-                $_SESSION['username'] = $username;
-                header("Location: index.php");
+                session_start();
+    $_SESSION["loggedin"] = true;
+    $_SESSION["username"] = $username;
+    
+    // Set a cookie with the username
+    setcookie("username", $username, time() + (86400 * 30), "/");
+                header("Location: home.php");
                 exit();
             } else {
                 // Authentication failed
