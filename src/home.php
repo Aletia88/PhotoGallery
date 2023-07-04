@@ -84,7 +84,7 @@
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
             $username = $row['username'];
-            $category = $row['catagory'];
+            $category = $row['category'];
 
             $sql2 = "SELECT  phone, facebook, linkedin, instagram, twitter FROM editprofile WHERE name = '$username'";
             $result2 = mysqli_query($conn, $sql2);
