@@ -166,10 +166,19 @@ $resultFetchRequests = mysqli_query($conn, $sqlFetchRequests);
             $profilePhoto = $row['profilePhoto'];
             ?>
             <div class="image-request">
-                <img src="<?php echo ("../uploads/upload_requests/" . $profilePhoto); ?>" alt="User Avatar">
-                <div class="details">
-                    <p><strong><?php echo $userName; ?></strong> has requested to upload an image.</p>
-                    <button class="approve-button" onclick="approveRequest('<?php echo $userName; ?>', '<?php echo $profilePhoto; ?>', '<?php echo $uploadedPhotoName; ?>')">Approve</button>
+              <img src="<?php echo ("../uploads/upload_requests/" . $profilePhoto); ?>" alt="User Avatar">
+              <div class="details">
+                <p><strong><?php echo $userName; ?></strong> has requested to upload an image.</p>
+                
+                <select name="category" id="dropdowList">
+                <option value="Nature">Nature</option>
+                <option value="Animal">Animal</option>
+                <option value="City">City</option>
+                <option value="Food">Food</option>
+                <option value="Culture">Culture</option>
+            </select>
+            <button class="approve-button" onclick="approveRequest('<?php echo $userName; ?>', '<?php echo $profilePhoto; ?>', '<?php echo $uploadedPhotoName; ?>', '<?php echo $category?>')">Approve</button>
+               
                     <a href="<?php echo "../uploads/" . $uploadedPhotoName; ?>" class="show-image-button">Show Image</a>
                 </div>
             </div>
@@ -228,17 +237,18 @@ $resultFetchRequests = mysqli_query($conn, $sqlFetchRequests);
   });
 
 
-function approveRequest(userName, profilePhoto, uploadedPhoto) {
+function approveRequest(userName, profilePhoto, uploadedPhoto, category) {
    // Add event listeners to the "Approve" buttons
    var approveButtons = document.getElementsByClassName("approve-button");
     for (var i = 0; i < approveButtons.length; i++) {
         approveButtons[i].addEventListener("click", function(e) {
             e.preventDefault();
+            var dropdown = document.getElementById("dropdownList");
             var imageRequest = this.parentNode.parentNode;
             var userName = imageRequest.querySelector("strong").textContent;
             var profilePhoto = imageRequest.querySelector("img").getAttribute("src");
             var uploadedPhoto = imageRequest.querySelector(".show-image-button").getAttribute("href");
-
+            var category =dropdown.value;
             // Make an AJAX request to insert the approved request into the "approved" table
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "insert_approved.php", true);
@@ -248,7 +258,7 @@ function approveRequest(userName, profilePhoto, uploadedPhoto) {
                     console.log(xhr.responseText);
                 }
             };
-            xhr.send("userName=" + userName + "&profilePhoto=" + profilePhoto + "&uploadedPhoto=" + uploadedPhoto);
+            xhr.send("userName=" + userName + "&profilePhoto=" + profilePhoto + "&uploadedPhoto=" + uploadedPhoto + "category=" + category);
         });
     }
     var xhttp = new XMLHttpRequest();
