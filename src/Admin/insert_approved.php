@@ -25,6 +25,10 @@ if (mysqli_query($conn, $sqlCreateTable)) {
 }
 
 // Get the values from the AJAX request
+$sql = 'SELECT * FROM requests';
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+
 $userName = $_POST['userName'];
 $profilePhoto = $_POST['profilePhoto'];
 $uploadedPhoto = $_POST['uploadedPhoto'];
@@ -36,16 +40,16 @@ $uploadedPhotoName = basename($uploadedPhoto);
 // Insert the approved request into the "approved" table
 $sqlInsertApproved = "INSERT INTO approved (username, profileimage, uploadedimage, catagory)
 VALUES ('$userName', '$profilePhotoName', '$uploadedPhotoName', '$category')";
-$deleteSql = "DELETE FROM requests WHERE username = '$userName' AND uploadedImages = '$uploadedPhoto'";
+// $deleteSql = "DELETE FROM requests WHERE username = '$userName' AND uploadedImages = '$uploadedPhoto'";
 
 if (mysqli_query($conn, $sqlInsertApproved)) {
     echo "Approved request inserted into the 'approved' table successfully.";
 
-    if (mysqli_query($conn, $deleteSql)) {
-        echo "Request deleted from the 'requests' table successfully.";
-    } else {
-        echo "Error deleting request: " . mysqli_error($conn);
-    }
+    // if (mysqli_query($conn, $deleteSql)) {
+    //     echo "Request deleted from the 'requests' table successfully.";
+    // } else {
+    //     echo "Error deleting request: " . mysqli_error($conn);
+    // }
 } else {
     echo "Error inserting approved request: " . mysqli_error($conn);
 }

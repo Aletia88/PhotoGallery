@@ -63,18 +63,7 @@
     </div>
 
 
-
-
-
-    <!-- <img src="images/flag.jpg" alt="Mountain Top " class="w-full "> -->
-
-
-
-
     <div class="body  mt-36  m-20 gap-10">
-
-
-
 
 
         <div class="grid grid-cols-3 gap-16 w-full">
@@ -95,7 +84,7 @@
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
             $username = $row['username'];
-            $category = $row['category'];
+            $category = $row['catagory'];
 
             $sql2 = "SELECT  phone, facebook, linkedin, instagram, twitter FROM editprofile WHERE name = '$username'";
             $result2 = mysqli_query($conn, $sql2);
@@ -115,7 +104,7 @@
                             if (mysqli_num_rows($result2) > 0) {
 
                                 
-                                
+                                $row2 = mysqli_fetch_assoc($result2);
                                 $facebookLink = $row2['facebook'];
                                 $bio = $row2['phone'];
                                 $linkedinLink = $row2['linkedin'];
@@ -168,16 +157,7 @@
 
 
 
-    <!-- <?php
-    // Scan the directory for image files
-    $dir = "images/";
-    $images = glob($dir . "*.jpg");
-
-    // Display each image in the gallery
-    foreach ($images as $image) {
-        echo "<a href='$image'><img src='$image' alt=''></a>";
-    }
-    ?> -->
+    
 
     
     <script src="app.js"></script>
